@@ -45,7 +45,11 @@ extern "C" {
 /* The max key length of all supported algorithms */
 #define MY_AES_MAX_KEY_LENGTH 32
 
+#ifdef _WIN32
+#define MY_AES_CTX_SIZE my_aes_ctx_size(MY_AES_ECB)
+#else
 #define MY_AES_CTX_SIZE 560
+#endif
 
 enum my_aes_mode {
     MY_AES_ECB, MY_AES_CBC

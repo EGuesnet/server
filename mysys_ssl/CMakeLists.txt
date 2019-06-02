@@ -31,9 +31,15 @@ SET(MYSYS_SSL_HIDDEN_SOURCES
     openssl.c
    )
 
+IF(WIN32)
+  SET(MY_CRYPT_CC my_crypt_win.cc)
+ELSE()
+  SET(MY_CRYPT_CC my_crypt.cc)
+ENDIF()
+
 SET(MYSYS_SSL_SOURCES
     ${MYSYS_SSL_HIDDEN_SOURCES}
-    my_crypt.cc
+    ${MY_CRYPT_CC}
    )
 
 # In order to get correct symbol visibility, these files
@@ -47,3 +53,6 @@ ENDIF()
 ADD_CONVENIENCE_LIBRARY(mysys_ssl ${MYSYS_SSL_SOURCES})
 TARGET_LINK_LIBRARIES(mysys_ssl dbug strings ${SSL_LIBRARIES})
 DTRACE_INSTRUMENT(mysys_ssl)
+IF(WIN32)
+  TARGET_LINK_LIBRARIES(mysys_ssl bcrypt)
+ENDIF()
