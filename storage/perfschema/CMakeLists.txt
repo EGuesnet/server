@@ -181,7 +181,7 @@ table_session_connect_attrs.cc
 table_session_account_connect_attrs.cc
 )
 
-MYSQL_ADD_PLUGIN(perfschema ${PERFSCHEMA_SOURCES} STORAGE_ENGINE DEFAULT STATIC_ONLY)
+MYSQL_ADD_PLUGIN(perfschema ${PERFSCHEMA_SOURCES} STORAGE_ENGINE DISABLED STATIC_ONLY)
 IF (TARGET perfschema)
   ADD_DEPENDENCIES(perfschema GenServerSource)
   IF(WITH_UNIT_TESTS)
