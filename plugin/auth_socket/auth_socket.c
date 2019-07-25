@@ -47,6 +47,12 @@
 #define uid cr_uid
 #define ucred xucred
 
+#elif defined HAVE_PEERCRED_STRUCT
+#define level SOL_SOCKET
+#define SO_PEERCRED SO_PEERID
+#define uid euid
+#define ucred peercred_struct
+
 #else
 #error impossible
 #endif

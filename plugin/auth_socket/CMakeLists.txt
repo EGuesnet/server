@@ -57,9 +57,23 @@ IF (HAVE_XUCRED)
   SET(ok 1)
 ELSE()
 
+# AIX also!
+CHECK_CXX_SOURCE_COMPILES(
+"#include <sys/socket.h>
+int main() {
+  struct peercred_struct cred;
+  getsockopt(0, SOL_SOCKET, SO_PEERID, &cred, 0);
+  }" HAVE_PEERCRED_STRUCT)
+
+IF (HAVE_PEERCRED_STRUCT)
+  ADD_DEFINITIONS(-DHAVE_PEERCRED_STRUCT)
+  SET(ok 1)
+ELSE()
+
 # Who else? Anyone?
 # C'mon, show your creativity, be different! ifdef's are fun, aren't they?
 
+ENDIF()
 ENDIF()
 ENDIF()
 ENDIF()
