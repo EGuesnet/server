@@ -168,8 +168,11 @@ void turn_parser_debug_on()
 
      The result will be in the process stderr (var/log/master.err)
    */
-
+#ifdef _AIX
+  static int yydebug;
+#else
   extern int yydebug;
+#endif
   yydebug= 1;
 }
 #endif
