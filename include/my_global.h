@@ -264,22 +264,6 @@ C_MODE_END
 #endif
 #endif /* !defined(__WIN__) */
 
-/* Go around some bugs in different OS and compilers */
-#ifdef _AIX			/* By soren@t.dk */
-#define _H_STRINGS
-#define _SYS_STREAM_H
-/* #define _AIX32_CURSES */	/* XXX: this breaks AIX 4.3.3 (others?). */
-#define ulonglong2double(A) my_ulonglong2double(A)
-#define my_off_t2double(A)  my_ulonglong2double(A)
-C_MODE_START
-inline double my_ulonglong2double(unsigned long long A) { return (double)A; }
-C_MODE_END
-#endif /* _AIX */
-
-#ifdef UNDEF_HAVE_INITGROUPS			/* For AIX 4.3 */
-#undef HAVE_INITGROUPS
-#endif
-
 /* gcc/egcs issues */
 
 #if defined(__GNUC) && defined(__EXCEPTIONS)
