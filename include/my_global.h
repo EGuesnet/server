@@ -136,12 +136,6 @@
 #endif /* _WIN32*/
 
 
-/* Workaround for _LARGE_FILES and _LARGE_FILE_API incompatibility on AIX */
-#if defined(_AIX) && defined(_LARGE_FILE_API)
-#undef _LARGE_FILE_API
-#undef __GNUG__
-#endif
-
 /*
   The macros below are used to allow build of Universal/fat binaries of
   MySQL and MySQL applications under darwin. 
@@ -299,13 +293,6 @@ C_MODE_END
 #define _LONG_LONG 1		/* For AIX string library */
 #endif
 
-/* Workaround for _LARGE_FILES and _LARGE_FILE_API incompatibility on AIX */
-#if defined(_AIX) && defined(_LARGE_FILE_API)
-#undef _LARGE_FILE_API
-#undef __GNUG__
-#endif
-
-
 #ifndef stdin
 #include <stdio.h>
 #endif
@@ -330,12 +317,6 @@ C_MODE_END
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
-#endif
-
-/* Workaround for _LARGE_FILES and _LARGE_FILE_API incompatibility on AIX */
-#if defined(_AIX) && defined(_LARGE_FILE_API)
-#undef _LARGE_FILE_API
-#undef __GNUG__
 #endif
 
 
@@ -1187,12 +1168,6 @@ typedef struct { const char *dli_fname, dli_fbase; } Dl_info;
 #define HAVE_REPLICATION
 #define HAVE_EXTERNAL_CLIENT
 #endif /* EMBEDDED_LIBRARY */
-
-/* Workaround for _LARGE_FILES and _LARGE_FILE_API incompatibility on AIX */
-#if defined(_AIX) && defined(_LARGE_FILE_API)
-#undef _LARGE_FILE_API
-#undef __GNUG__
-#endif
 
 /*
   Provide defaults for the CPU cache line size, if it has not been detected by
